@@ -17,21 +17,23 @@ from tensorflow.keras.optimizers import Adam
 
 OUTPUT_FILE = "ml_predictions.json"
 
-EGX100_TICKERS = [
-    "ABUK.CA","ADIB.CA","ATLC.CA","ALCN.CA","SVCE.CA","AMER.CA","ACGC.CA",
-    "ARAB.CA","AMIA.CA","RREI.CA","ARCC.CA","ASCM.CA","ASPI.CA","BINV.CA",
-    "BTFH.CA","CIRA.CA","COSG.CA","POUL.CA","CSAG.CA","PRCL.CA","CLHO.CA",
-    "COMI.CA","CNFN.CA","CIEB.CA","SUGR.CA","DSCW.CA","EFID.CA","HRHO.CA",
-    "EFIH.CA","EGAL.CA","EGCH.CA","EGTS.CA","PHAR.CA","MPRC.CA","ETRS.CA",
-    "EHDR.CA","ECAP.CA","ELKA.CA","KABO.CA","OBRI.CA","ELSH.CA","ELEC.CA",
-    "UEGC.CA","SWDY.CA","EMFD.CA","ENGC.CA","EXPA.CA","FWRY.CA","GBCO.CA",
-    "GGCC.CA","HELI.CA","HDBK.CA","ISPH.CA","IEEC.CA","IFAP.CA","ICFC.CA",
-    "ISMQ.CA","ISMA.CA","JUFO.CA","LCSW.CA","MCRO.CA","MASR.CA","MPCO.CA",
-    "MOIL.CA","MEPA.CA","MPCI.CA","MENA.CA","MCQE.CA","MFPC.CA","ATQA.CA",
-    "MTIE.CA","EGAS.CA","OFH.CA","OLFI.CA","ODIN.CA","ORAS.CA","ORHD.CA",
-    "ORWE.CA","PHDC.CA","PRDC.CA","CCAP.CA","RAYA.CA","SKPC.CA","SCEM.CA",
-    "OCDI.CA","TMGH.CA","ETEL.CA","RMDA.CA","CERA.CA","ADPC.CA","UNIT.CA",
-    "ZMID.CA", "CPCI.CA"
+# Expanded to cover the vast majority of active Egyptian Exchange (EGX) equities
+EGX_MASTER_TICKERS = [
+    "ABUK.CA", "ACGC.CA", "ADCI.CA", "ADIB.CA", "ADPC.CA", "ADRI.CA", "AFDI.CA", "AFMC.CA",
+    "AIDC.CA", "AIH.CA", "ALCN.CA", "AMER.CA", "AMIA.CA", "AMOC.CA", "ARAB.CA", "ARCC.CA",
+    "ASCM.CA", "ASPI.CA", "ATLC.CA", "ATQA.CA", "BINV.CA", "BIOC.CA", "BTFH.CA", "CCAP.CA",
+    "CERA.CA", "CIEB.CA", "CIRA.CA", "CLHO.CA", "CNFN.CA", "COMI.CA", "COSG.CA", "CPCI.CA",
+    "CSAG.CA", "DAPH.CA", "DOMT.CA", "DSCW.CA", "EAST.CA", "ECAP.CA", "EFID.CA", "EFIH.CA",
+    "EGAS.CA", "EGAL.CA", "EGBE.CA", "EGCH.CA", "EHDR.CA", "ELEC.CA", "ELKA.CA", "ELSH.CA",
+    "EMFD.CA", "ENGC.CA", "ETEL.CA", "ETRS.CA", "EXPA.CA", "FWRY.CA", "GBCO.CA", "GGCC.CA",
+    "GPIM.CA", "HDBK.CA", "HELI.CA", "HRHO.CA", "ICFC.CA", "IDRE.CA", "IEEC.CA", "IFAP.CA",
+    "IRON.CA", "ISMA.CA", "ISMQ.CA", "ISPH.CA", "JUFO.CA", "KABO.CA", "KRDI.CA", "LCSW.CA",
+    "MASR.CA", "MCQE.CA", "MCRO.CA", "MENA.CA", "MEPA.CA", "MFPC.CA", "MOIL.CA", "MPCI.CA",
+    "MPCO.CA", "MPRC.CA", "MTIE.CA", "NCCW.CA", "NILS.CA", "NIPH.CA", "OBRI.CA", "OCDI.CA",
+    "ODIN.CA", "OFH.CA", "OIH.CA", "OLFI.CA", "ORAS.CA", "ORHD.CA", "ORWE.CA", "PHAR.CA",
+    "PHDC.CA", "POUL.CA", "PRCL.CA", "PRDC.CA", "RACC.CA", "RAYA.CA", "RMDA.CA", "RREI.CA",
+    "SCEM.CA", "SKPC.CA", "SUGR.CA", "SVCE.CA", "SWDY.CA", "TMGH.CA", "UEGC.CA", "UNIT.CA",
+    "VLMR.CA", "VLMRA.CA", "ZEOT.CA", "ZMID.CA"
 ]
 
 def safe_atr(df, window=14):
@@ -80,7 +82,7 @@ prediction_data = {}
 features = ['RSI_14', 'MACD', 'MACD_signal', 'MACD_diff', 'EMA_20', 'ATR_14', 
             'return_1d', 'return_3d', 'return_7d', 'vol_change', 'vol_ma20']
 
-for ticker in EGX100_TICKERS:
+for ticker in EGX_MASTER_TICKERS:
     df = download_and_clean(ticker)
     if df is not None and len(df) > 30:
         df = add_features(df)
