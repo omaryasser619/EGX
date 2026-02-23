@@ -51,11 +51,25 @@ jobs:
 
     - name: Download JSON Predictions
       run: |
+        echo "Downloading Kaggle outputs..."
         kaggle kernels output omaryasser619/egx-deep-learning -p ./
+        
+        echo "--- FOLDER CONTENTS DIRECTORY ---"
+        ls -la
+        echo "---------------------------------"
 
     - name: Push to Android App Endpoint
       run: |
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        git add ml_predictions.json
-        git diff --quiet && git diff --staged --quiet || (git commit -m "🧠 Neural Network Daily Update" && git push)
+        
+        # Safety Check: Does the file actually exist?
+        if [ -f "ml_predictions.json" ]; then
+          git add ml_predictions.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "🧠 Neural Network Daily Update" && git push)
+          echo "✅ SUCCESS: Predictions pushed to GitHub!"
+        else
+          echo "❌ ERROR: ml_predictions.json is missing!"
+          echo "This means the Kaggle Notebook crashed during the background run before generating the file."
+          exit 1
+        fi
