@@ -3,7 +3,7 @@ name: Nightly Deep Learning Engine
 on:
   schedule:
     - cron: '0 3 * * *' # Runs at 3:00 AM UTC
-  workflow_dispatch: # Allows you to click a button to run it right now
+  workflow_dispatch: # Allows manual trigger
 
 jobs:
   run-neural-network:
@@ -24,17 +24,16 @@ jobs:
       run: pip install --upgrade kaggle>=2.0.0
 
     - name: Command Kaggle to Train Neural Network
-      env:
-        KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
       run: |
+        # Explicitly export the token into the shell environment
+        export KAGGLE_API_TOKEN="${{ secrets.KAGGLE_API_TOKEN }}"
         kaggle kernels pull omaryasser619/egx-deep-learning -m
         kaggle kernels push
         
     - name: Wait for Training to Complete
-      env:
-        KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
       run: |
-        echo "Waiting for Kaggle GPU to finish processing 100 stocks..."
+        export KAGGLE_API_TOKEN="${{ secrets.KAGGLE_API_TOKEN }}"
+        echo "Waiting for Kaggle GPU to finish processing..."
         sleep 60 
         status="running"
         while [[ "$status" == *"running"* || "$status" == *"queued"* ]]; do
@@ -44,9 +43,8 @@ jobs:
         done
 
     - name: Download JSON Predictions
-      env:
-        KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
       run: |
+        export KAGGLE_API_TOKEN="${{ secrets.KAGGLE_API_TOKEN }}"
         kaggle kernels output omaryasser619/egx-deep-learning -p ./
 
     - name: Push to Android App Endpoint
