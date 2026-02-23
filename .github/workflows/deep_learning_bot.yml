@@ -1,0 +1,57 @@
+name: Nightly Deep Learning Engine
+
+on:
+  schedule:
+    - cron: '0 3 * * *' # Runs at 3:00 AM UTC
+  workflow_dispatch: # Allows you to click a button to run it right now
+
+jobs:
+  run-neural-network:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        
+    - name: Install Kaggle API
+      run: pip install kaggle
+
+    - name: Command Kaggle to Train Neural Network
+      env:
+        KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+      run: |
+        kaggle kernels pull omaryasser619/egx-deep-learning -m
+        kaggle kernels push
+        
+    - name: Wait for Training to Complete
+      env:
+        KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+      run: |
+        echo "Waiting for Kaggle GPU to finish processing 100 stocks..."
+        sleep 60 
+        status="running"
+        while [[ "$status" == *"running"* || "$status" == *"queued"* ]]; do
+          sleep 60
+          status=$(kaggle kernels status omaryasser619/egx-deep-learning)
+          echo "Status: $status"
+        done
+
+    - name: Download JSON Predictions
+      env:
+        KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+      run: |
+        kaggle kernels output omaryasser619/egx-deep-learning -p ./
+
+    - name: Push to Android App Endpoint
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git add ml_predictions.json
+        git diff --quiet && git diff --staged --quiet || (git commit -m "🧠 Neural Network Daily Update" && git push)
