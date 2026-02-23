@@ -20,53 +20,15 @@ jobs:
       with:
         python-version: '3.10'
         
-    - name: Install Kaggle API
-      run: pip install kaggle
+    - name: Install ML Libraries
+      run: |
+        python -m pip install --upgrade pip
+        pip install yfinance pandas numpy scikit-learn ta tensorflow
 
-    - name: Authenticate Kaggle
+    - name: Train AI & Generate Predictions
       run: |
-        mkdir -p ~/.config/kaggle
-        mkdir -p ~/.kaggle
-        echo '{"username":"${{ secrets.KAGGLE_USERNAME }}","key":"${{ secrets.KAGGLE_KEY }}"}' > ~/.config/kaggle/kaggle.json
-        echo '{"username":"${{ secrets.KAGGLE_USERNAME }}","key":"${{ secrets.KAGGLE_KEY }}"}' > ~/.kaggle/kaggle.json
-        chmod 600 ~/.config/kaggle/kaggle.json
-        chmod 600 ~/.kaggle/kaggle.json
-
-    - name: Command Kaggle to Train Neural Network
-      run: |
-        kaggle kernels pull omaryasser619/egx-deep-learning -m
-        kaggle kernels push
-        
-    - name: Wait for Training to Complete
-      run: |
-        echo "Waiting for Kaggle GPU to finish processing..."
-        sleep 60 
-        status=$(kaggle kernels status omaryasser619/egx-deep-learning)
-        
-        # Stricter loop: keep waiting until we specifically see the word "complete"
-        while [[ "$status" == *"running"* || "$status" == *"queued"* || "$status" == *"cancel"* ]]; do
-          echo "Status: $status. Sleeping 30s..."
-          sleep 30
-          status=$(kaggle kernels status omaryasser619/egx-deep-learning)
-        done
-        
-        echo "Final Status: $status"
-        
-        # 🔴 THE FIX: Wait 30 seconds for Kaggle's servers to actually prepare the download file!
-        echo "Notebook complete! Giving Kaggle 30 seconds to generate the output artifact..."
-        sleep 30
-
-    - name: Download & Locate JSON Predictions
-      run: |
-        echo "Downloading outputs..."
-        kaggle kernels output omaryasser619/egx-deep-learning -p ./
-        
-        echo "Hunting for ml_predictions.json..."
-        # 🔴 THE FIX: Find the file anywhere in the directory and move it to the root so GitHub can see it
-        find . -name "ml_predictions.json" -exec mv {} ./ \;
-        
-        echo "--- ROOT DIRECTORY CONTENTS ---"
-        ls -la
+        # Runs the script directly on GitHub's CPU
+        python egx_ml_engine.py
 
     - name: Push to Android App Endpoint
       run: |
@@ -76,8 +38,8 @@ jobs:
         if [ -f "ml_predictions.json" ]; then
           git add ml_predictions.json
           git diff --quiet && git diff --staged --quiet || (git commit -m "🧠 Neural Network Daily Update" && git push)
-          echo "✅ SUCCESS: Predictions pushed to GitHub!"
+          echo "✅ SUCCESS: Predictions generated and pushed to GitHub!"
         else
-          echo "❌ ERROR: ml_predictions.json is STILL missing!"
+          echo "❌ ERROR: ml_predictions.json failed to generate."
           exit 1
         fi
