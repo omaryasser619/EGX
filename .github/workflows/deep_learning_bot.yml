@@ -26,13 +26,13 @@ jobs:
     - name: Command Kaggle to Train Neural Network
       run: |
         # Explicitly export the token into the shell environment
-        export KAGGLE_API_TOKEN=${{ secrets.KAGGLE_API_TOKEN }}
+        export KAGGLE_API_TOKEN="${{ secrets.KAGGLE_API_TOKEN }}"
         kaggle kernels pull omaryasser619/egx-deep-learning -m
         kaggle kernels push
         
     - name: Wait for Training to Complete
       run: |
-        export KAGGLE_API_TOKEN=${{ secrets.KAGGLE_API_TOKEN }}
+        export KAGGLE_API_TOKEN="${{ secrets.KAGGLE_API_TOKEN }}"
         echo "Waiting for Kaggle GPU to finish processing..."
         sleep 60 
         status="running"
@@ -44,7 +44,7 @@ jobs:
 
     - name: Download JSON Predictions
       run: |
-        export KAGGLE_API_TOKEN=${{ secrets.KAGGLE_API_TOKEN }}
+        export KAGGLE_API_TOKEN="${{ secrets.KAGGLE_API_TOKEN }}"
         kaggle kernels output omaryasser619/egx-deep-learning -p ./
 
     - name: Push to Android App Endpoint
