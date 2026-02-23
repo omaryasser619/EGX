@@ -21,18 +21,25 @@ jobs:
         python-version: '3.10'
         
     - name: Install Kaggle API
-      run: pip install --upgrade kaggle>=2.0.0
+      run: pip install kaggle
+
+    - name: Authenticate Kaggle (The Foolproof Way)
+      run: |
+        # This physically writes the credentials into the exact folder Kaggle is looking for
+        mkdir -p ~/.config/kaggle
+        mkdir -p ~/.kaggle
+        echo '{"username":"${{ secrets.KAGGLE_USERNAME }}","key":"${{ secrets.KAGGLE_KEY }}"}' > ~/.config/kaggle/kaggle.json
+        echo '{"username":"${{ secrets.KAGGLE_USERNAME }}","key":"${{ secrets.KAGGLE_KEY }}"}' > ~/.kaggle/kaggle.json
+        chmod 600 ~/.config/kaggle/kaggle.json
+        chmod 600 ~/.kaggle/kaggle.json
 
     - name: Command Kaggle to Train Neural Network
       run: |
-        # Explicitly export the token into the shell environment
-        export KAGGLE_API_TOKEN="${{ secrets.KAGGLE_API_TOKEN }}"
         kaggle kernels pull omaryasser619/egx-deep-learning -m
         kaggle kernels push
         
     - name: Wait for Training to Complete
       run: |
-        export KAGGLE_API_TOKEN="${{ secrets.KAGGLE_API_TOKEN }}"
         echo "Waiting for Kaggle GPU to finish processing..."
         sleep 60 
         status="running"
@@ -44,7 +51,6 @@ jobs:
 
     - name: Download JSON Predictions
       run: |
-        export KAGGLE_API_TOKEN="${{ secrets.KAGGLE_API_TOKEN }}"
         kaggle kernels output omaryasser619/egx-deep-learning -p ./
 
     - name: Push to Android App Endpoint
