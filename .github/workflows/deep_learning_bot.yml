@@ -21,7 +21,7 @@ jobs:
         python-version: '3.10'
         
     - name: Install Kaggle API
-      run: pip install kaggle
+      run: pip install --upgrade kaggle>=2.0.0
 
     - name: Command Kaggle to Train Neural Network
       env:
