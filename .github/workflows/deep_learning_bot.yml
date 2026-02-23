@@ -2,8 +2,8 @@ name: Nightly Deep Learning Engine
 
 on:
   schedule:
-    - cron: '0 3 * * *' # Runs at 3:00 AM UTC
-  workflow_dispatch: # Allows manual trigger
+    - cron: '0 3 * * *'
+  workflow_dispatch:
 
 jobs:
   run-neural-network:
@@ -23,9 +23,8 @@ jobs:
     - name: Install Kaggle API
       run: pip install kaggle
 
-    - name: Authenticate Kaggle (The Foolproof Way)
+    - name: Authenticate Kaggle
       run: |
-        # This physically writes the credentials into the exact folder Kaggle is looking for
         mkdir -p ~/.config/kaggle
         mkdir -p ~/.kaggle
         echo '{"username":"${{ secrets.KAGGLE_USERNAME }}","key":"${{ secrets.KAGGLE_KEY }}"}' > ~/.config/kaggle/kaggle.json
@@ -42,34 +41,43 @@ jobs:
       run: |
         echo "Waiting for Kaggle GPU to finish processing..."
         sleep 60 
-        status="running"
-        while [[ "$status" == *"running"* || "$status" == *"queued"* ]]; do
-          sleep 60
+        status=$(kaggle kernels status omaryasser619/egx-deep-learning)
+        
+        # Stricter loop: keep waiting until we specifically see the word "complete"
+        while [[ "$status" == *"running"* || "$status" == *"queued"* || "$status" == *"cancel"* ]]; do
+          echo "Status: $status. Sleeping 30s..."
+          sleep 30
           status=$(kaggle kernels status omaryasser619/egx-deep-learning)
-          echo "Status: $status"
         done
+        
+        echo "Final Status: $status"
+        
+        # 🔴 THE FIX: Wait 30 seconds for Kaggle's servers to actually prepare the download file!
+        echo "Notebook complete! Giving Kaggle 30 seconds to generate the output artifact..."
+        sleep 30
 
-    - name: Download JSON Predictions
+    - name: Download & Locate JSON Predictions
       run: |
-        echo "Downloading Kaggle outputs..."
+        echo "Downloading outputs..."
         kaggle kernels output omaryasser619/egx-deep-learning -p ./
         
-        echo "--- FOLDER CONTENTS DIRECTORY ---"
+        echo "Hunting for ml_predictions.json..."
+        # 🔴 THE FIX: Find the file anywhere in the directory and move it to the root so GitHub can see it
+        find . -name "ml_predictions.json" -exec mv {} ./ \;
+        
+        echo "--- ROOT DIRECTORY CONTENTS ---"
         ls -la
-        echo "---------------------------------"
 
     - name: Push to Android App Endpoint
       run: |
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
         
-        # Safety Check: Does the file actually exist?
         if [ -f "ml_predictions.json" ]; then
           git add ml_predictions.json
           git diff --quiet && git diff --staged --quiet || (git commit -m "🧠 Neural Network Daily Update" && git push)
           echo "✅ SUCCESS: Predictions pushed to GitHub!"
         else
-          echo "❌ ERROR: ml_predictions.json is missing!"
-          echo "This means the Kaggle Notebook crashed during the background run before generating the file."
+          echo "❌ ERROR: ml_predictions.json is STILL missing!"
           exit 1
         fi
