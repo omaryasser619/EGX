@@ -100,13 +100,17 @@ for ticker in EGX_MASTER_TICKERS:
     df = download_and_clean(ticker)
     if df is not None and len(df) > 30:
         df = add_features(df)
-        train_df = df.iloc[:-1].dropna(subset=features + ['target_class', 'next_day_price'])
+        train_df = df.iloc[:-1].dropna(subset=features + ['target_class', 'target_return_1d'])
         train_df['Ticker'] = ticker
         all_train_data.append(train_df)
         
         today_row = df.iloc[[-1]][features].copy()
         if not today_row.isna().values.any():
-            prediction_data[ticker] = today_row
+            # FIX 2: Save the current price so we can calculate the final price later
+            prediction_data[ticker] = {
+                "features": today_row,
+                "current_price": df.iloc[-1]['Adj Close']
+            }
 
 if not all_train_data:
     print("❌ No data found for any tickers. Check internet connection.")
@@ -116,7 +120,8 @@ final_train_df = pd.concat(all_train_data)
 
 X_train_raw = final_train_df[features].values
 y_class_train = final_train_df['target_class'].values
-y_price_train = final_train_df['next_day_price'].values
+# FIX 2: Train the model to predict the percentage move, NOT the absolute price!
+y_price_train = final_train_df['target_return_1d'].values
 
 scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train_raw)
@@ -147,16 +152,26 @@ print("Generating tomorrow's predictions via Neural Network...")
 output_json = {}
 signal_map = {0: "SELL", 1: "HOLD", 2: "BUY"}
 
-for ticker, today_features in prediction_data.items():
-    today_scaled = scaler.transform(today_features.values)
+print("Generating tomorrow's predictions via Neural Network...")
+output_json = {}
+signal_map = {0: "SELL", 1: "HOLD", 2: "BUY"}
+
+for ticker, data in prediction_data.items():
+    today_scaled = scaler.transform(data["features"].values)
     
     pred_class_probs = class_nn.predict(today_scaled, verbose=0)
     pred_class_num = np.argmax(pred_class_probs[0])
-    pred_price = price_nn.predict(today_scaled, verbose=0)[0][0]
     
+    # FIX 2: The AI now predicts a percentage (e.g., 0.02 for +2%)
+    pred_return = price_nn.predict(today_scaled, verbose=0)[0][0]
+    
+    # Calculate the actual target price by adding the percentage to today's price
+    pred_price = data["current_price"] * (1 + pred_return)
+    
+    # FIX 1: Rename keys to match Kotlin standard data classes
     output_json[ticker] = {
-        "ml_signal": signal_map[int(pred_class_num)],
-        "ml_predicted_price": round(float(pred_price), 2)
+        "signal": signal_map[int(pred_class_num)],
+        "predictedPrice": round(float(pred_price), 2)
     }
 
 with open(OUTPUT_FILE, "w") as f:
