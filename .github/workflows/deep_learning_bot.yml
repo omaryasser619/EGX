@@ -1,45 +1,42 @@
-name: Nightly Deep Learning Engine
+name: EGX AI Training Engine
 
 on:
+  # 1. Keeps your daily schedule (so it stays fresh)
   schedule:
-    - cron: '0 3 * * *'
+    - cron: '0 3 * * *' 
+  
+  # 2. THIS IS THE MAGIC PART:
+  # It tells GitHub to run the AI the moment the Android app uploads a new watchlist
+  push:
+    paths:
+      - 'user_watchlist.json'
+      
+  # 3. Allows you to run it manually from the GitHub website
   workflow_dispatch:
 
 jobs:
-  run-neural-network:
+  build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Setup Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
-        
-    - name: Install ML Libraries
-      run: |
-        python -m pip install --upgrade pip
-        pip install yfinance pandas numpy scikit-learn ta tensorflow
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
 
-    - name: Train AI & Generate Predictions
-      run: |
-        # Runs the script directly on GitHub's CPU
-        python egx_ml_engine.py
+      - name: Install dependencies
+        run: |
+          pip install yfinance pandas numpy tensorflow ta scikit-learn
 
-    - name: Push to Android App Endpoint
-      run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        
-        if [ -f "ml_predictions.json" ]; then
+      - name: Run AI Training
+        run: python egx_ml_engine.py
+
+      - name: Commit and Push Results
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
           git add ml_predictions.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "🧠 Neural Network Daily Update" && git push)
-          echo "✅ SUCCESS: Predictions generated and pushed to GitHub!"
-        else
-          echo "❌ ERROR: ml_predictions.json failed to generate."
-          exit 1
-        fi
+          git commit -m "AI Predictions Updated" || exit 0
+          git push
