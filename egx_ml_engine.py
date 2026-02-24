@@ -16,8 +16,9 @@ from tensorflow.keras.layers import Dense, Dropout, Input
 from tensorflow.keras.optimizers import Adam
 
 OUTPUT_FILE = "ml_predictions.json"
+USER_WATCHLIST_FILE = "user_watchlist.json"
 
-# Expanded to cover the vast majority of active Egyptian Exchange (EGX) equities
+# 1. BASE TICKER LIST
 EGX_MASTER_TICKERS = [
     "ABUK.CA", "ACGC.CA", "ADCI.CA", "ADIB.CA", "ADPC.CA", "ADRI.CA", "AFDI.CA", "AFMC.CA",
     "AIDC.CA", "AIH.CA", "ALCN.CA", "AMER.CA", "AMIA.CA", "AMOC.CA", "ARAB.CA", "ARCC.CA",
@@ -35,6 +36,19 @@ EGX_MASTER_TICKERS = [
     "SCEM.CA", "SKPC.CA", "SUGR.CA", "SVCE.CA", "SWDY.CA", "TMGH.CA", "UEGC.CA", "UNIT.CA",
     "VLMR.CA", "VLMRA.CA", "ZEOT.CA", "ZMID.CA"
 ]
+
+# 2. WATCHLIST INTEGRATION: Merge stocks added via Android App
+if os.path.exists(USER_WATCHLIST_FILE):
+    try:
+        with open(USER_WATCHLIST_FILE, "r") as f:
+            user_tickers = json.load(f)
+            # Ensure tickers match yfinance format (SYMBOL.CA)
+            formatted_user_tickers = [t if t.endswith(".CA") else f"{t}.CA" for t in user_tickers]
+            # Merge and remove duplicates
+            EGX_MASTER_TICKERS = list(set(EGX_MASTER_TICKERS + formatted_user_tickers))
+            print(f"✅ Integrated {len(formatted_user_tickers)} stocks from Android Watchlist.")
+    except Exception as e:
+        print(f"⚠️ Could not read user_watchlist.json: {e}")
 
 def safe_atr(df, window=14):
     if len(df) < window: return pd.Series(np.nan, index=df.index)
@@ -75,7 +89,7 @@ def add_features(df):
     df = df.replace([np.inf, -np.inf], np.nan)
     return df
 
-print("Downloading EGX data for Deep Learning...")
+print(f"Downloading data for {len(EGX_MASTER_TICKERS)} tickers...")
 all_train_data = []
 prediction_data = {} 
 
@@ -93,6 +107,10 @@ for ticker in EGX_MASTER_TICKERS:
         today_row = df.iloc[[-1]][features].copy()
         if not today_row.isna().values.any():
             prediction_data[ticker] = today_row
+
+if not all_train_data:
+    print("❌ No data found for any tickers. Check internet connection.")
+    exit()
 
 final_train_df = pd.concat(all_train_data)
 
