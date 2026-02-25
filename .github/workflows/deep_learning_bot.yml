@@ -1,17 +1,12 @@
 name: EGX AI Training Engine
 
 on:
-  # 1. Keeps your daily schedule (so it stays fresh)
+  # Runs at 16:00 UTC (which is exactly 6:00 PM Cairo Time)
   schedule:
-    - cron: '0 3 * * *' 
-  
-  # 2. THIS IS THE MAGIC PART:
-  # It tells GitHub to run the AI the moment the Android app uploads a new watchlist
+    - cron: '0 16 * * *' 
   push:
     paths:
       - 'user_watchlist.json'
-      
-  # 3. Allows you to run it manually from the GitHub website
   workflow_dispatch:
 
 jobs:
