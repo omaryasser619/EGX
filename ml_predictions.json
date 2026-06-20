@@ -2,13 +2,5 @@
     "ADRI.CA": {
         "signal": "HOLD",
         "predictedPrice": 7.28
-    },
-    "AIH.CA": {
-        "signal": "SELL",
-        "predictedPrice": 0.48
-    },
-    "IEEC.CA": {
-        "signal": "HOLD",
-        "predictedPrice": 0.45
     }
 }
