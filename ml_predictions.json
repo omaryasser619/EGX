@@ -1,438 +1,442 @@
 {
-    "ELKA.CA": {
-        "signal": "BUY",
-        "predictedPrice": 1.47
-    },
-    "IEEC.CA": {
-        "signal": "BUY",
-        "predictedPrice": 0.77
-    },
-    "OLFI.CA": {
+    "UNIT.CA": {
         "signal": "HOLD",
-        "predictedPrice": 21.86
-    },
-    "TMGH.CA": {
-        "signal": "HOLD",
-        "predictedPrice": 87.6
-    },
-    "OIH.CA": {
-        "signal": "BUY",
-        "predictedPrice": 1.86
-    },
-    "ECAP.CA": {
-        "signal": "HOLD",
-        "predictedPrice": 30.22
-    },
-    "EFIH.CA": {
-        "signal": "BUY",
-        "predictedPrice": 22.01
-    },
-    "LCSW.CA": {
-        "signal": "BUY",
-        "predictedPrice": 30.26
-    },
-    "MENA.CA": {
-        "signal": "HOLD",
-        "predictedPrice": 6.27
-    },
-    "DSCW.CA": {
-        "signal": "BUY",
-        "predictedPrice": 1.68
-    },
-    "ZEOT.CA": {
-        "signal": "BUY",
-        "predictedPrice": 11.12
+        "predictedPrice": 16.99
     },
     "BINV.CA": {
+        "signal": "SELL",
+        "predictedPrice": 57.88
+    },
+    "ALCN.CA": {
+        "signal": "SELL",
+        "predictedPrice": 33.77
+    },
+    "GBCO.CA": {
         "signal": "HOLD",
-        "predictedPrice": 56.01
+        "predictedPrice": 29.44
+    },
+    "ENGC.CA": {
+        "signal": "BUY",
+        "predictedPrice": 35.78
+    },
+    "ACGC.CA": {
+        "signal": "SELL",
+        "predictedPrice": 13.94
+    },
+    "HRHO.CA": {
+        "signal": "HOLD",
+        "predictedPrice": 23.55
     },
     "CIRA.CA": {
         "signal": "HOLD",
-        "predictedPrice": 38.64
-    },
-    "EGBE.CA": {
-        "signal": "HOLD",
-        "predictedPrice": 0.51
-    },
-    "ATLC.CA": {
-        "signal": "BUY",
-        "predictedPrice": 5.65
-    },
-    "KABO.CA": {
-        "signal": "BUY",
-        "predictedPrice": 8.26
-    },
-    "EAST.CA": {
-        "signal": "HOLD",
-        "predictedPrice": 29.91
-    },
-    "ATQA.CA": {
-        "signal": "BUY",
-        "predictedPrice": 11.83
-    },
-    "SUGR.CA": {
-        "signal": "BUY",
-        "predictedPrice": 53.41
-    },
-    "ZMID.CA": {
-        "signal": "BUY",
-        "predictedPrice": 7.83
-    },
-    "ADPC.CA": {
-        "signal": "HOLD",
-        "predictedPrice": 3.51
-    },
-    "ETEL.CA": {
-        "signal": "HOLD",
-        "predictedPrice": 136.03
-    },
-    "CCAP.CA": {
-        "signal": "HOLD",
-        "predictedPrice": 6.69
-    },
-    "GGCC.CA": {
-        "signal": "BUY",
-        "predictedPrice": 0.69
-    },
-    "CSAG.CA": {
-        "signal": "SELL",
-        "predictedPrice": 35.13
-    },
-    "MEPA.CA": {
-        "signal": "BUY",
-        "predictedPrice": 1.64
-    },
-    "MPRC.CA": {
-        "signal": "HOLD",
-        "predictedPrice": 37.93
-    },
-    "FWRY.CA": {
-        "signal": "HOLD",
-        "predictedPrice": 18.3
-    },
-    "OCDI.CA": {
-        "signal": "BUY",
-        "predictedPrice": 26.66
-    },
-    "ENGC.CA": {
-        "signal": "SELL",
-        "predictedPrice": 38.02
-    },
-    "CIEB.CA": {
-        "signal": "HOLD",
-        "predictedPrice": 23.73
-    },
-    "CPCI.CA": {
-        "signal": "HOLD",
-        "predictedPrice": 560.84
-    },
-    "CNFN.CA": {
-        "signal": "BUY",
-        "predictedPrice": 3.98
-    },
-    "EGAL.CA": {
-        "signal": "HOLD",
-        "predictedPrice": 342.09
-    },
-    "ASCM.CA": {
-        "signal": "HOLD",
-        "predictedPrice": 56.53
+        "predictedPrice": 38.2
     },
     "MCRO.CA": {
-        "signal": "BUY",
-        "predictedPrice": 1.46
-    },
-    "COSG.CA": {
-        "signal": "BUY",
-        "predictedPrice": 1.55
-    },
-    "UNIT.CA": {
-        "signal": "BUY",
-        "predictedPrice": 17.38
-    },
-    "CERA.CA": {
-        "signal": "SELL",
-        "predictedPrice": 1.25
-    },
-    "TALM.CA": {
-        "signal": "BUY",
-        "predictedPrice": 19.3
-    },
-    "RAYA.CA": {
-        "signal": "BUY",
-        "predictedPrice": 6.16
-    },
-    "ARCC.CA": {
-        "signal": "BUY",
-        "predictedPrice": 61.72
-    },
-    "AMIA.CA": {
         "signal": "HOLD",
-        "predictedPrice": 18.69
-    },
-    "SWDY.CA": {
-        "signal": "BUY",
-        "predictedPrice": 112.53
-    },
-    "AFMC.CA": {
-        "signal": "SELL",
-        "predictedPrice": 135.72
-    },
-    "MPCI.CA": {
-        "signal": "SELL",
-        "predictedPrice": 346.79
-    },
-    "PRCL.CA": {
-        "signal": "BUY",
-        "predictedPrice": 26.9
-    },
-    "EFID.CA": {
-        "signal": "BUY",
-        "predictedPrice": 18.96
-    },
-    "BIOC.CA": {
-        "signal": "SELL",
-        "predictedPrice": 232.61
+        "predictedPrice": 1.48
     },
     "SKPC.CA": {
         "signal": "BUY",
-        "predictedPrice": 16.2
+        "predictedPrice": 15.81
     },
-    "OBRI.CA": {
+    "BIOC.CA": {
+        "signal": "SELL",
+        "predictedPrice": 267.83
+    },
+    "NCCW.CA": {
         "signal": "BUY",
-        "predictedPrice": 24.02
+        "predictedPrice": 6.92
     },
-    "EGTS.CA": {
+    "ASPI.CA": {
+        "signal": "BUY",
+        "predictedPrice": 0.34
+    },
+    "ISMQ.CA": {
         "signal": "HOLD",
-        "predictedPrice": 18.11
+        "predictedPrice": 7.76
     },
-    "IFAP.CA": {
+    "ELKA.CA": {
+        "signal": "BUY",
+        "predictedPrice": 1.49
+    },
+    "ETRS.CA": {
         "signal": "HOLD",
-        "predictedPrice": 19.31
+        "predictedPrice": 9.98
     },
-    "DAPH.CA": {
+    "ELEC.CA": {
         "signal": "BUY",
-        "predictedPrice": 94.54
-    },
-    "AMER.CA": {
-        "signal": "BUY",
-        "predictedPrice": 4.53
-    },
-    "PHAR.CA": {
-        "signal": "BUY",
-        "predictedPrice": 105.62
-    },
-    "OFH.CA": {
-        "signal": "BUY",
-        "predictedPrice": 0.84
+        "predictedPrice": 1.8
     },
     "ADCI.CA": {
         "signal": "HOLD",
-        "predictedPrice": 270.31
+        "predictedPrice": 271.29
     },
-    "NCCW.CA": {
-        "signal": "SELL",
-        "predictedPrice": 7.12
+    "OCDI.CA": {
+        "signal": "BUY",
+        "predictedPrice": 24.99
+    },
+    "IFAP.CA": {
+        "signal": "HOLD",
+        "predictedPrice": 19.08
+    },
+    "RMDA.CA": {
+        "signal": "HOLD",
+        "predictedPrice": 5.29
+    },
+    "EGAL.CA": {
+        "signal": "HOLD",
+        "predictedPrice": 342.27
+    },
+    "AMIA.CA": {
+        "signal": "HOLD",
+        "predictedPrice": 18.29
     },
     "ARAB.CA": {
         "signal": "HOLD",
         "predictedPrice": 0.22
     },
-    "ODIN.CA": {
-        "signal": "BUY",
-        "predictedPrice": 2.42
-    },
-    "HELI.CA": {
-        "signal": "BUY",
-        "predictedPrice": 7.4
-    },
-    "EGCH.CA": {
+    "ECAP.CA": {
         "signal": "HOLD",
-        "predictedPrice": 13.55
+        "predictedPrice": 29.98
     },
-    "EHDR.CA": {
+    "MPCO.CA": {
         "signal": "BUY",
-        "predictedPrice": 2.43
+        "predictedPrice": 2.39
     },
-    "PHDC.CA": {
+    "MPRC.CA": {
         "signal": "HOLD",
-        "predictedPrice": 12.79
+        "predictedPrice": 37.97
     },
-    "HDBK.CA": {
+    "MEPA.CA": {
         "signal": "BUY",
-        "predictedPrice": 107.03
+        "predictedPrice": 1.6
     },
-    "AMOC.CA": {
+    "EFID.CA": {
         "signal": "HOLD",
-        "predictedPrice": 13.12
+        "predictedPrice": 18.74
     },
-    "SVCE.CA": {
-        "signal": "BUY",
-        "predictedPrice": 9.9
-    },
-    "RMDA.CA": {
-        "signal": "BUY",
-        "predictedPrice": 5.3
-    },
-    "EXPA.CA": {
+    "OLFI.CA": {
         "signal": "HOLD",
-        "predictedPrice": 21.56
+        "predictedPrice": 22.02
     },
-    "ELEC.CA": {
+    "BTFH.CA": {
         "signal": "BUY",
-        "predictedPrice": 1.82
+        "predictedPrice": 2.69
     },
-    "NIPH.CA": {
+    "COSG.CA": {
+        "signal": "BUY",
+        "predictedPrice": 1.52
+    },
+    "DAPH.CA": {
         "signal": "SELL",
-        "predictedPrice": 298.41
+        "predictedPrice": 94.43
+    },
+    "ARCC.CA": {
+        "signal": "HOLD",
+        "predictedPrice": 62.59
     },
     "MCQE.CA": {
         "signal": "SELL",
-        "predictedPrice": 181.64
+        "predictedPrice": 183.23
     },
-    "COMI.CA": {
+    "ASCM.CA": {
         "signal": "HOLD",
-        "predictedPrice": 128.53
+        "predictedPrice": 56.32
     },
-    "SCEM.CA": {
-        "signal": "BUY",
-        "predictedPrice": 79.02
+    "MILS.CA": {
+        "signal": "SELL",
+        "predictedPrice": 180.0
     },
-    "ASPI.CA": {
+    "JUFO.CA": {
+        "signal": "HOLD",
+        "predictedPrice": 24.9
+    },
+    "PRCL.CA": {
         "signal": "BUY",
-        "predictedPrice": 0.35
+        "predictedPrice": 25.02
+    },
+    "MENA.CA": {
+        "signal": "HOLD",
+        "predictedPrice": 6.2
+    },
+    "ICFC.CA": {
+        "signal": "BUY",
+        "predictedPrice": 21.44
+    },
+    "RREI.CA": {
+        "signal": "BUY",
+        "predictedPrice": 3.64
+    },
+    "IEEC.CA": {
+        "signal": "SELL",
+        "predictedPrice": 0.79
+    },
+    "HELI.CA": {
+        "signal": "BUY",
+        "predictedPrice": 7.29
+    },
+    "POUL.CA": {
+        "signal": "SELL",
+        "predictedPrice": 9.79
+    },
+    "EHDR.CA": {
+        "signal": "BUY",
+        "predictedPrice": 2.44
+    },
+    "NIPH.CA": {
+        "signal": "SELL",
+        "predictedPrice": 303.38
     },
     "MOIL.CA": {
         "signal": "HOLD",
         "predictedPrice": 0.71
     },
-    "ACGC.CA": {
+    "COMI.CA": {
         "signal": "HOLD",
-        "predictedPrice": 13.55
+        "predictedPrice": 127.91
     },
-    "ALCN.CA": {
+    "ETEL.CA": {
         "signal": "HOLD",
-        "predictedPrice": 32.44
-    },
-    "DOMT.CA": {
-        "signal": "BUY",
-        "predictedPrice": 24.49
-    },
-    "EMFD.CA": {
-        "signal": "BUY",
-        "predictedPrice": 12.4
+        "predictedPrice": 134.64
     },
     "IDRE.CA": {
         "signal": "BUY",
-        "predictedPrice": 47.22
-    },
-    "RREI.CA": {
-        "signal": "BUY",
-        "predictedPrice": 3.86
-    },
-    "EGAS.CA": {
-        "signal": "HOLD",
-        "predictedPrice": 56.0
-    },
-    "PRDC.CA": {
-        "signal": "BUY",
-        "predictedPrice": 7.09
-    },
-    "RACC.CA": {
-        "signal": "BUY",
-        "predictedPrice": 8.99
-    },
-    "MTIE.CA": {
-        "signal": "HOLD",
-        "predictedPrice": 7.9
-    },
-    "HRHO.CA": {
-        "signal": "HOLD",
-        "predictedPrice": 23.54
-    },
-    "BTFH.CA": {
-        "signal": "BUY",
-        "predictedPrice": 2.66
-    },
-    "ORWE.CA": {
-        "signal": "HOLD",
-        "predictedPrice": 26.91
+        "predictedPrice": 45.73
     },
     "CLHO.CA": {
         "signal": "HOLD",
-        "predictedPrice": 15.2
+        "predictedPrice": 15.29
     },
-    "JUFO.CA": {
+    "FWRY.CA": {
         "signal": "HOLD",
-        "predictedPrice": 25.04
+        "predictedPrice": 18.2
     },
-    "GBCO.CA": {
+    "ODIN.CA": {
         "signal": "HOLD",
-        "predictedPrice": 29.45
+        "predictedPrice": 2.46
+    },
+    "ZMID.CA": {
+        "signal": "BUY",
+        "predictedPrice": 7.36
+    },
+    "CERA.CA": {
+        "signal": "BUY",
+        "predictedPrice": 1.2
     },
     "MASR.CA": {
-        "signal": "BUY",
-        "predictedPrice": 7.02
-    },
-    "ELSH.CA": {
-        "signal": "BUY",
-        "predictedPrice": 11.2
-    },
-    "ISPH.CA": {
         "signal": "HOLD",
-        "predictedPrice": 11.74
+        "predictedPrice": 7.29
     },
-    "ORHD.CA": {
+    "SCEM.CA": {
+        "signal": "SELL",
+        "predictedPrice": 76.89
+    },
+    "PRDC.CA": {
         "signal": "BUY",
-        "predictedPrice": 38.71
-    },
-    "MPCO.CA": {
-        "signal": "BUY",
-        "predictedPrice": 2.4
-    },
-    "UEGC.CA": {
-        "signal": "BUY",
-        "predictedPrice": 1.45
-    },
-    "AFDI.CA": {
-        "signal": "HOLD",
-        "predictedPrice": 50.8
-    },
-    "ISMA.CA": {
-        "signal": "BUY",
-        "predictedPrice": 24.73
-    },
-    "ICFC.CA": {
-        "signal": "HOLD",
-        "predictedPrice": 22.06
-    },
-    "IRON.CA": {
-        "signal": "HOLD",
-        "predictedPrice": 25.97
-    },
-    "ISMQ.CA": {
-        "signal": "BUY",
-        "predictedPrice": 7.72
-    },
-    "ADIB.CA": {
-        "signal": "HOLD",
-        "predictedPrice": 50.44
+        "predictedPrice": 7.29
     },
     "ABUK.CA": {
         "signal": "HOLD",
-        "predictedPrice": 89.02
+        "predictedPrice": 88.53
+    },
+    "OBRI.CA": {
+        "signal": "HOLD",
+        "predictedPrice": 24.28
+    },
+    "HDBK.CA": {
+        "signal": "HOLD",
+        "predictedPrice": 106.92
+    },
+    "UEGC.CA": {
+        "signal": "BUY",
+        "predictedPrice": 1.43
+    },
+    "MPCI.CA": {
+        "signal": "SELL",
+        "predictedPrice": 338.74
+    },
+    "AMOC.CA": {
+        "signal": "SELL",
+        "predictedPrice": 13.49
+    },
+    "EMFD.CA": {
+        "signal": "BUY",
+        "predictedPrice": 12.29
+    },
+    "RACC.CA": {
+        "signal": "HOLD",
+        "predictedPrice": 9.09
+    },
+    "AFDI.CA": {
+        "signal": "HOLD",
+        "predictedPrice": 49.86
     },
     "MFPC.CA": {
-        "signal": "SELL",
-        "predictedPrice": 46.25
+        "signal": "HOLD",
+        "predictedPrice": 45.97
     },
-    "MILS.CA": {
-        "signal": "SELL",
-        "predictedPrice": 171.69
+    "PHAR.CA": {
+        "signal": "HOLD",
+        "predictedPrice": 107.92
     },
-    "ETRS.CA": {
+    "CPCI.CA": {
+        "signal": "HOLD",
+        "predictedPrice": 575.07
+    },
+    "EXPA.CA": {
+        "signal": "HOLD",
+        "predictedPrice": 21.28
+    },
+    "EAST.CA": {
+        "signal": "HOLD",
+        "predictedPrice": 28.63
+    },
+    "RAYA.CA": {
+        "signal": "HOLD",
+        "predictedPrice": 6.2
+    },
+    "ORHD.CA": {
+        "signal": "HOLD",
+        "predictedPrice": 38.77
+    },
+    "MTIE.CA": {
+        "signal": "HOLD",
+        "predictedPrice": 7.81
+    },
+    "CIEB.CA": {
+        "signal": "HOLD",
+        "predictedPrice": 23.57
+    },
+    "ADPC.CA": {
         "signal": "BUY",
-        "predictedPrice": 10.04
+        "predictedPrice": 3.49
+    },
+    "ISMA.CA": {
+        "signal": "BUY",
+        "predictedPrice": 23.58
+    },
+    "ZEOT.CA": {
+        "signal": "HOLD",
+        "predictedPrice": 11.25
+    },
+    "CNFN.CA": {
+        "signal": "BUY",
+        "predictedPrice": 3.96
+    },
+    "IRON.CA": {
+        "signal": "HOLD",
+        "predictedPrice": 26.07
+    },
+    "EFIH.CA": {
+        "signal": "HOLD",
+        "predictedPrice": 22.57
+    },
+    "LCSW.CA": {
+        "signal": "HOLD",
+        "predictedPrice": 30.23
+    },
+    "AMER.CA": {
+        "signal": "BUY",
+        "predictedPrice": 4.29
+    },
+    "EGBE.CA": {
+        "signal": "HOLD",
+        "predictedPrice": 0.51
+    },
+    "DSCW.CA": {
+        "signal": "HOLD",
+        "predictedPrice": 1.68
+    },
+    "OIH.CA": {
+        "signal": "BUY",
+        "predictedPrice": 1.8
+    },
+    "ISPH.CA": {
+        "signal": "HOLD",
+        "predictedPrice": 11.7
+    },
+    "SWDY.CA": {
+        "signal": "SELL",
+        "predictedPrice": 107.92
+    },
+    "ORWE.CA": {
+        "signal": "HOLD",
+        "predictedPrice": 26.79
+    },
+    "EGTS.CA": {
+        "signal": "SELL",
+        "predictedPrice": 17.35
+    },
+    "OFH.CA": {
+        "signal": "SELL",
+        "predictedPrice": 0.87
+    },
+    "KABO.CA": {
+        "signal": "HOLD",
+        "predictedPrice": 8.31
+    },
+    "CSAG.CA": {
+        "signal": "HOLD",
+        "predictedPrice": 35.32
+    },
+    "ELSH.CA": {
+        "signal": "HOLD",
+        "predictedPrice": 11.19
+    },
+    "TMGH.CA": {
+        "signal": "HOLD",
+        "predictedPrice": 86.92
+    },
+    "GGCC.CA": {
+        "signal": "BUY",
+        "predictedPrice": 0.67
+    },
+    "EGAS.CA": {
+        "signal": "HOLD",
+        "predictedPrice": 55.8
+    },
+    "ATQA.CA": {
+        "signal": "BUY",
+        "predictedPrice": 11.44
+    },
+    "PHDC.CA": {
+        "signal": "HOLD",
+        "predictedPrice": 12.74
+    },
+    "SUGR.CA": {
+        "signal": "HOLD",
+        "predictedPrice": 52.95
+    },
+    "TALM.CA": {
+        "signal": "SELL",
+        "predictedPrice": 19.59
+    },
+    "DOMT.CA": {
+        "signal": "HOLD",
+        "predictedPrice": 24.66
+    },
+    "CCAP.CA": {
+        "signal": "SELL",
+        "predictedPrice": 6.79
+    },
+    "EGCH.CA": {
+        "signal": "HOLD",
+        "predictedPrice": 13.39
+    },
+    "AFMC.CA": {
+        "signal": "SELL",
+        "predictedPrice": 146.94
+    },
+    "ADIB.CA": {
+        "signal": "HOLD",
+        "predictedPrice": 50.13
+    },
+    "SVCE.CA": {
+        "signal": "BUY",
+        "predictedPrice": 9.69
+    },
+    "ATLC.CA": {
+        "signal": "BUY",
+        "predictedPrice": 5.45
     }
 }
